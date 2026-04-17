@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>业务代码开发中的事务问题.md | 锶远</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="什么是事务？事务是逻辑上的一组操作，要么都执行，要么都不执行。  声明式事务管理推荐使用（代码侵入性最小），实际是通过 AOP 实现（基于@Transactional 的全注解方式使用最多）。  事务传播，  TransactionDefinition.PROPAGATION_REQUIRED 使用的最多的一个事务传播行为，我们平时经常使用的@Transactional注解默认使用就是这个事务传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="业务代码开发中的事务问题.md">
+<meta property="og:url" content="https://cooper.gitee.io/2023/02/%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98.md/">
+<meta property="og:site_name" content="锶远">
+<meta property="og:description" content="什么是事务？事务是逻辑上的一组操作，要么都执行，要么都不执行。  声明式事务管理推荐使用（代码侵入性最小），实际是通过 AOP 实现（基于@Transactional 的全注解方式使用最多）。  事务传播，  TransactionDefinition.PROPAGATION_REQUIRED 使用的最多的一个事务传播行为，我们平时经常使用的@Transactional注解默认使用就是这个事务传">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-17T08:02:27.222Z">
+<meta property="article:author" content="Cooper Niu">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="开发经验">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="锶远" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">锶远</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术分享与生活感悟</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cooper.gitee.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-业务代码开发中的事务问题.md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98.md/" class="article-date">
+  <time class="dt-published" datetime="2023-01-31T16:00:00.000Z" itemprop="datePublished">2023-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      业务代码开发中的事务问题.md
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><h2 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h2><p><strong>事务是逻辑上的一组操作，要么都执行，要么都不执行。</strong></p>
+</li>
+<li><h4 id="声明式事务管理"><a href="#声明式事务管理" class="headerlink" title="声明式事务管理"></a>声明式事务管理</h4><p>推荐使用（代码侵入性最小），实际是通过 AOP 实现（基于<code>@Transactional</code> 的全注解方式使用最多）。</p>
+</li>
+<li><p>事务传播，</p>
+</li>
+<li><p><strong><code>TransactionDefinition.PROPAGATION_REQUIRED</code></strong></p>
+<p>使用的最多的一个事务传播行为，我们平时经常使用的<code>@Transactional</code>注解默认使用就是这个事务传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。也就是说：</p>
+<ul>
+<li>如果外部方法没有开启事务的话，<code>Propagation.REQUIRED</code>修饰的内部方法会新开启自己的事务，且开启的事务相互独立，互不干扰。</li>
+<li>如果外部方法开启事务并且被<code>Propagation.REQUIRED</code>的话，所有<code>Propagation.REQUIRED</code>修饰的内部方法和外部方法均属于同一事务 ，只要一个方法回滚，整个事务均回滚。</li>
+</ul>
+<p>举个例子：如果我们上面的<code>aMethod()</code>和<code>bMethod()</code>使用的都是<code>PROPAGATION_REQUIRED</code>传播行为的话，两者使用的就是同一个事务，只要其中一个方法回滚，整个事务均回滚。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line">Class A &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    B b;</span><br><span class="line">    <span class="meta">@Transactional(propagation = Propagation.xxx)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> aMethod &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">        b.bMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line">Class B &#123;</span><br><span class="line">    <span class="meta">@Transactional(propagation = Propagation.xxx)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> bMethod &#123;</span><br><span class="line">       <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="为什么我一个数据查询操作还要启用事务支持呢？"><a href="#为什么我一个数据查询操作还要启用事务支持呢？" class="headerlink" title="为什么我一个数据查询操作还要启用事务支持呢？"></a>为什么我一个数据查询操作还要启用事务支持呢？</h3><p>如果你一次执行单条查询语句，则没有必要启用事务支持，数据库默认支持 SQL 执行期间的读一致性；</p>
+<p>如果你一次执行多条查询语句，例如统计查询，报表查询，在这种场景下，多条查询 SQL 必须保证整体的读一致性，否则，在前条 SQL 查询之后，后条 SQL 查询之前，数据被其他用户改变，则该次整体的统计查询将会出现读数据不一致的状态，此时，应该启用事务支持</p>
+</li>
+</ul>
+<p>如果你想要回滚你定义的特定的异常类型的话，可以这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor= MyException.class)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Transactional-注解使用详解"><a href="#Transactional-注解使用详解" class="headerlink" title="@Transactional 注解使用详解"></a>@Transactional 注解使用详解</h3><h4 id="Transactional-的作用范围"><a href="#Transactional-的作用范围" class="headerlink" title="@Transactional 的作用范围"></a><code>@Transactional</code> 的作用范围</h4><ol>
+<li><strong>方法</strong> ：推荐将注解使用于方法上，不过需要注意的是：<strong>该注解只能应用到 public 方法上，否则不生效。</strong></li>
+<li><strong>类</strong> ：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。</li>
+<li><strong>接口</strong> ：不推荐在接口上使用。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[总结]Spring 事务管理中@Transactional 的参数:<a target="_blank" rel="noopener" href="http://www.mobabel.net/spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E4%B8%ADtransactional%E7%9A%84%E5%8F%82%E6%95%B0/">http://www.mobabel.net/spring 事务管理中 transactional 的参数/open in new window</a></li>
+<li>Spring 官方文档：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/transaction.html">https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/transaction.htmlopen in new window</a></li>
+<li>《Spring5 高级编程》</li>
+<li>透彻的掌握 Spring 中@transactional 的使用: <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html">https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.htmlopen in new window</a></li>
+<li>Spring 事务的传播特性：<a target="_blank" rel="noopener" href="https://github.com/love-somnus/Spring/wiki/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E7%89%B9%E6%80%A7">https://github.com/love-somnus/Spring/wiki/Spring 事务的传播特性open in new window</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013341344">Spring 事务传播行为详解open in new window</a> ：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013341344">https://segmentfault.com/a/1190000013341344open in new window</a></li>
+<li>全面分析 Spring 的编程式事务管理及声明式事务管理：<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cooper.gitee.io/2023/02/%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98.md/" data-id="cmo2n4uhx0008mkcoe0qi4kbl" data-title="业务代码开发中的事务问题.md" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/02/Linux%20%E6%9D%80%E6%8E%89%E6%89%80%E6%9C%89Java%E8%BF%9B%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 杀掉所有Java进程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E7%94%9F%E5%AD%A9%E5%AD%90%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">为什么我们要生孩子？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/%E5%8D%9A%E5%AE%A2%E5%BC%80%E7%AF%87%E8%AF%8D/">CooperNiu的博客</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/%E6%8A%80%E6%9C%AF%E6%98%AF%E4%BD%A0%E7%9A%84%E5%AE%89%E8%BA%AB%E7%AB%8B%E5%91%BD%E4%B9%8B%E6%9C%AC/">技术是你的安身立命之本</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87%E9%87%8D%E5%9C%A8%E5%B9%B3%E8%A1%A1/">人生目标重在平衡</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E8%81%8C%E5%9C%BA%E5%BE%88%E9%9A%BE%EF%BC%8C%E7%A6%BB%E5%BC%80%E6%9B%B4%E9%9A%BE/">职场很难，离开更难</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E6%B7%B1%E5%9C%B3%E5%9F%8E%E4%B8%AD%E6%9D%91%E7%BB%9F%E7%A7%9F%E7%9A%84%E6%9C%AA%E6%9D%A5/">深圳城中村统租的未来</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Cooper Niu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

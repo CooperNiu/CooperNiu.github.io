@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>中级软考笔记 | 锶远</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据仓库是一个面向主题的、集成的、相对稳定的、反映历史变化的数据集合，用于支持管理决策。 数据仓库的系统结构  数据源：是数据仓库系统的基础，是整个系统的数据源泉 数据的存储与管理：是数据仓库的核心 OLAP服务器：对分析需要的数据进行有效集成，按照多维模型予以组织，以便于进行多角度、多层次分析，并发现趋势 前端工具：包括各种查询、报表、分析、数据挖掘工具以及各种基于数据藏书的应用开发工具。  O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中级软考笔记">
+<meta property="og:url" content="https://cooper.gitee.io/2023/05/%E4%B8%AD%E7%BA%A7%E8%BD%AF%E8%80%83%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="锶远">
+<meta property="og:description" content="数据仓库是一个面向主题的、集成的、相对稳定的、反映历史变化的数据集合，用于支持管理决策。 数据仓库的系统结构  数据源：是数据仓库系统的基础，是整个系统的数据源泉 数据的存储与管理：是数据仓库的核心 OLAP服务器：对分析需要的数据进行有效集成，按照多维模型予以组织，以便于进行多角度、多层次分析，并发现趋势 前端工具：包括各种查询、报表、分析、数据挖掘工具以及各种基于数据藏书的应用开发工具。  O">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-17T08:02:27.222Z">
+<meta property="article:author" content="Cooper Niu">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="开发经验">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="锶远" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">锶远</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">技术分享与生活感悟</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cooper.gitee.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-中级软考笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/%E4%B8%AD%E7%BA%A7%E8%BD%AF%E8%80%83%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2023-05-25T16:00:00.000Z" itemprop="datePublished">2023-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      中级软考笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>数据仓库是一个面向主题的、集成的、相对稳定的、反映历史变化的数据集合，用于支持管理决策。</p>
+<p>数据仓库的系统结构</p>
+<ol>
+<li>数据源：是数据仓库系统的基础，是整个系统的数据源泉</li>
+<li>数据的存储与管理：是数据仓库的核心</li>
+<li>OLAP服务器：对分析需要的数据进行有效集成，按照多维模型予以组织，以便于进行多角度、多层次分析，并发现趋势</li>
+<li>前端工具：包括各种查询、报表、分析、数据挖掘工具以及各种基于数据藏书的应用开发工具。</li>
+</ol>
+<p>OSI协议，共7层</p>
+<ol>
+<li>物理层：网线</li>
+<li>数据链路层</li>
+<li>网络层：网络地址翻译为对应的物理地址。如IP协议</li>
+<li>传输层：TCP、UDP</li>
+<li>会话层：RPC</li>
+<li>表示层：JPEG，GIF等数据格式</li>
+<li>应用层：HTTP，Telnet，TFP等对软件提供接口以使程序能够使用网络服务</li>
+</ol>
+<h2 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h2><p>项目立项管理包括以下5个典型环节</p>
+<ol>
+<li>项目建议</li>
+<li>项目可行性分析</li>
+<li>项目审批</li>
+<li>项目招投标</li>
+<li>项目合同谈判与签订</li>
+</ol>
+<h3 id="项目建议"><a href="#项目建议" class="headerlink" title="项目建议"></a>项目建议</h3><p>又称为：立项申请</p>
+<p>项目建议书主要内容：</p>
+<ol>
+<li>项目简介</li>
+<li>项目建设单位概括</li>
+<li>项目建设的必要性</li>
+<li>业务分析</li>
+<li>总体建设方案</li>
+<li>本期项目建设方案</li>
+<li>环保、消防、职业安全</li>
+<li>项目实施进度</li>
+<li>投资估算和资金筹措</li>
+<li>效益与风险分析</li>
+</ol>
+<h3 id="项目可行性分析"><a href="#项目可行性分析" class="headerlink" title="项目可行性分析"></a>项目可行性分析</h3><p>一般包括：</p>
+<ol>
+<li>投资必要性</li>
+<li>技术可行性</li>
+<li>财务可行性</li>
+<li>组织可行性</li>
+<li>经济可行性</li>
+<li>社会可行性</li>
+<li>风险因素及对策</li>
+</ol>
+<p>可行性报告内容：</p>
+<ol>
+<li>项目概况</li>
+<li>项目建设单位概括</li>
+<li>需求分析和项目建设的必要性</li>
+<li>总体建设方案</li>
+<li>本期项目建设方案</li>
+<li>项目招标方案</li>
+<li>环保、消防、职业安全</li>
+<li>项目组织机构和人员培训</li>
+<li>项目实施进度</li>
+<li>投资估算和资金来源</li>
+<li>效益与评价指标分析</li>
+<li>项目风险与项目管理</li>
+</ol>
+<h3 id="项目招标"><a href="#项目招标" class="headerlink" title="项目招标"></a>项目招标</h3><p>资格预审文件或者招标文件的发售期不得少于5日</p>
+<p>资格预审的申请人少于3个的，应当重新招标</p>
+<p>一个招标项目只能有一个标底。标底必须保密</p>
+<p>履约保证金不得超过中标合同金额的10%</p>
+<p>评标委员会由具有高级职称或者同等专业水平的技术、经济等相关领域专家，招标人和招标机构代表等5人及以上单数组成，其中经济、技术等方面专家人数不少于总数的2&#x2F;3</p>
+<p>合同谈判阶段，先谈技术条款，后谈商务条款。</p>
+<p>技术谈判主要包括：合同技术附件内容、合同实施技术路线、质量评定标准、采购设备和系统报价及人员投入开发的比重等</p>
+<p>商务谈判主要包括：投标价的优惠条件；质量、工期、服务违约罚款；其他。</p>
+<h2 id="项目整体管理"><a href="#项目整体管理" class="headerlink" title="项目整体管理"></a>项目整体管理</h2><p>包括6个过程（口诀：二制指监变结）</p>
+<ol>
+<li>制定项目章程</li>
+<li>制定项目管理计划</li>
+<li>指导与管理项目工作</li>
+<li>监控项目工作</li>
+<li>实施整体变更控制。审查所有变更请求，批准变更</li>
+<li>结束项目</li>
+</ol>
+<h3 id="制定项目章程"><a href="#制定项目章程" class="headerlink" title="制定项目章程"></a>制定项目章程</h3><p>制定项目章程是编写一份正式批准项目并授权项目经理在项目活动中使用组织资源的文件的过程</p>
+<p>宣告项目的正式启动、项目经理的任命</p>
+<p>由高级管理层签发</p>
+<p>遵循“谁签发，谁有权修改”的原则</p>
+<h4 id="项目章程的作用："><a href="#项目章程的作用：" class="headerlink" title="项目章程的作用："></a>项目章程的作用：</h4><ol>
+<li>确定项目经理，规定其权力</li>
+<li>正式确认项目的存在，给项目一个合法的地位</li>
+<li>规定项目的总体目标，如范围、时间、成本和质量等</li>
+<li>通过叙述启动项目的理由，爸项目与执行组织的日常经营运作及战略计划等联系起来。</li>
+</ol>
+<h4 id="制定项目章程的输入"><a href="#制定项目章程的输入" class="headerlink" title="制定项目章程的输入"></a>制定项目章程的输入</h4><ol>
+<li>项目工作说明书，包括：业务需要、产品范围描述、战略计划</li>
+<li>商业论证</li>
+</ol>
+<h3 id="项目范围确认"><a href="#项目范围确认" class="headerlink" title="项目范围确认"></a>项目范围确认</h3><h4 id="项目范围确认的输入"><a href="#项目范围确认的输入" class="headerlink" title="项目范围确认的输入"></a>项目范围确认的输入</h4><ol>
+<li>项目管理计划</li>
+<li>需求文件</li>
+<li>需求跟踪矩阵</li>
+<li><strong>核实</strong>的可交付成果</li>
+<li>工作绩效数据</li>
+</ol>
+<h4 id="项目范围确认的输出"><a href="#项目范围确认的输出" class="headerlink" title="项目范围确认的输出"></a>项目范围确认的输出</h4><ol>
+<li>验收的可交付结果</li>
+<li>变更请求</li>
+<li>工作绩效信息</li>
+<li>项目文件更新</li>
+</ol>
+<h3 id="质量成本"><a href="#质量成本" class="headerlink" title="质量成本"></a>质量成本</h3><h4 id="一致性成本：防止失败的费用"><a href="#一致性成本：防止失败的费用" class="headerlink" title="一致性成本：防止失败的费用"></a>一致性成本：防止失败的费用</h4><p>预防成本</p>
+<p>评价成本</p>
+<h4 id="非一致性成本：处理失败的费用"><a href="#非一致性成本：处理失败的费用" class="headerlink" title="非一致性成本：处理失败的费用"></a>非一致性成本：处理失败的费用</h4><p>内部失败成本</p>
+<p>外部失败成本</p>
+<h3 id="七种质量管理工具"><a href="#七种质量管理工具" class="headerlink" title="七种质量管理工具"></a>七种质量管理工具</h3><p>口诀：因流核帕直控散</p>
+<ol>
+<li>因果图，鱼骨图、石川图，用来追溯问题来源，推导出根本原因，列尽每根鱼骨上的合理可能性</li>
+<li>流程图，显示输入转化为输出的过程中，需要的步骤顺序和可能分支</li>
+<li>核查表，计数图，收集数据的查对清单</li>
+<li>帕累托图，二八法则，ABC分析法，抓重点原因，识别造成绝大多数问题的少数主要原因</li>
+<li>直方图，描述集中趋势、发散程度和统计分布形状</li>
+<li>控制图，判断某一过程处于控制之中还是失控状态，和时间有关系</li>
+<li>散点图，两个变量之间的相关性</li>
+</ol>
+<h3 id="缩短工期的方法（必考：赶快加减使改）"><a href="#缩短工期的方法（必考：赶快加减使改）" class="headerlink" title="缩短工期的方法（必考：赶快加减使改）"></a>缩短工期的方法（必考：赶快加减使改）</h3><ol>
+<li>赶工，投入更多资源或者增加工作时间，以缩短关键活动的工期</li>
+<li>快速跟进，并行施工，以缩短关键路径的长度</li>
+<li>加强质量管理，及时发现问题，减少返工</li>
+<li>减小活动范围或降低活动要求</li>
+<li>使用高素质资源或经验丰富的人员</li>
+<li>改进方法或技术，以提高生产效率</li>
+</ol>
+<h3 id="团队的5个阶段（必考：形震规发结）"><a href="#团队的5个阶段（必考：形震规发结）" class="headerlink" title="团队的5个阶段（必考：形震规发结）"></a>团队的5个阶段（必考：形震规发结）</h3><p><strong>形成</strong>阶段：开始形成共同目标，对团队未来有美好期待</p>
+<p><strong>震荡</strong>阶段：开始执行任务，一般会遇到超出想象的困难，希望被现实打破。个体之间开始争执，互相指责，开始怀疑项目经理的能力</p>
+<p><strong>规范</strong>阶段：经过一段时间磨合，团队成员之间相互熟悉和了解，矛盾基本解决，项目经理得到团队认可。</p>
+<p><strong>发挥</strong>阶段：随着相互之间配合默契和对项目经理的信任，成员积极工作，努力实现目标。集体荣誉感非常强，常将团队换成第一称谓，如“我们组，我们部门”等</p>
+<p><strong>结束</strong>阶段</p>
+<p>不管团队目前属于什么阶段，新增加一个人或者减少一个人，都是从形成阶段重新开始。</p>
+<h3 id="项目成本管理"><a href="#项目成本管理" class="headerlink" title="项目成本管理"></a>项目成本管理</h3><p>成本管理的过程</p>
+<ol>
+<li>制定成本管理计划</li>
+<li>成本估算，编制所需的大致成本</li>
+<li>成本预算，合计各个活动的估算成本，以建立成本基准</li>
+<li>成本控制</li>
+</ol>
+<p>成本的类型：</p>
+<ol>
+<li>可变成本</li>
+<li>固定成本</li>
+<li>直接成本</li>
+<li>间接成本</li>
+<li>机会成本：泛指一切做出选择后其中一个最大的损失</li>
+<li>沉没成本：由于过去的决策已经发生了的，不能由现在或将来的任何决策改变的成本。对现有决策而言是不可控成本，会很大程度影响人们的行为方式与决策，在投资决策时应该排除沉没成本的干扰。</li>
+</ol>
+<p>应急储备是为了应对已经接受的已识别风险，属于成本基准的一部分</p>
+<p>管理储备是为了管理控制的目的而特别流出的项目预算，应对不可预见的工作，“未知-未知”风险。不包括在成本基准中，但属于项目总预算的一部分，需要高层管理者审批</p>
+<p>成本管理计划的输入：</p>
+<p><strong>口诀：二项事组</strong></p>
+<ol>
+<li>项目管理计划</li>
+<li>项目章程</li>
+<li>事业环境因素</li>
+<li>组织过程资产</li>
+</ol>
+<p>成本管理计划的工具和技术（专分会）</p>
+<ol>
+<li>专家判断</li>
+<li>分析技术</li>
+<li>会议</li>
+</ol>
+<p>成本管理计划的输出：</p>
+<ol>
+<li>精确等级</li>
+<li>测量单位</li>
+<li>组织程序链接</li>
+<li>控制临界值</li>
+<li>挣值规则</li>
+<li>报告格式</li>
+<li>过程说明</li>
+<li>其他细节</li>
+</ol>
+<p>活动是为了完成工作包所需要进行的工作，有可能一个工作包包括多个活动。</p>
+<p>保密性、可用性、完整性是信息安全最为关注的三个属性。</p>
+<p>项目成功受到4个方面的约束：范围、时间、成本、质量</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cooper.gitee.io/2023/05/%E4%B8%AD%E7%BA%A7%E8%BD%AF%E8%80%83%E7%AC%94%E8%AE%B0/" data-id="cmo2n4uhy0009mkcofxcx98aa" data-title="中级软考笔记" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/06/%E6%B7%B1%E5%9C%B3%E5%9F%8E%E4%B8%AD%E6%9D%91%E7%BB%9F%E7%A7%9F%E7%9A%84%E6%9C%AA%E6%9D%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          深圳城中村统租的未来
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/%E6%88%BF%E5%AD%90%E4%B8%8D%E6%98%AF%E5%AE%B6%EF%BC%8C%E5%8F%AA%E6%98%AF%E8%B5%84%E4%BA%A7%E5%8C%85%EF%BC%8C%E6%98%AF%E4%B8%8D%E6%98%AF%E4%BD%A0%E7%9A%84%EF%BC%8C%E5%8F%AA%E5%8F%96%E5%86%B3%E4%BA%8E%E8%B5%84%E4%BA%A7%E8%B4%9F%E5%80%BA%E8%A1%A8%EF%BC%8C%E8%80%8C%E7%BB%B4%E6%8A%A4%E8%B5%84%E4%BA%A7%E8%B4%9F%E5%80%BA%E8%A1%A8%E7%9A%84%EF%BC%8C%E6%98%AF%E4%BD%A0%E7%9A%84%E7%8E%B0%E9%87%91%E6%B5%81%E6%88%96%E8%80%85%E8%AF%B4%EF%BC%8C%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%9C.md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">房子不是家，只是资产包，是不是你的，只取决于资产负债表，而维护资产负债表的，是你的现金流或者说，你的工作.md</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/%E5%8D%9A%E5%AE%A2%E5%BC%80%E7%AF%87%E8%AF%8D/">CooperNiu的博客</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/%E6%8A%80%E6%9C%AF%E6%98%AF%E4%BD%A0%E7%9A%84%E5%AE%89%E8%BA%AB%E7%AB%8B%E5%91%BD%E4%B9%8B%E6%9C%AC/">技术是你的安身立命之本</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87%E9%87%8D%E5%9C%A8%E5%B9%B3%E8%A1%A1/">人生目标重在平衡</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E8%81%8C%E5%9C%BA%E5%BE%88%E9%9A%BE%EF%BC%8C%E7%A6%BB%E5%BC%80%E6%9B%B4%E9%9A%BE/">职场很难，离开更难</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/%E6%B7%B1%E5%9C%B3%E5%9F%8E%E4%B8%AD%E6%9D%91%E7%BB%9F%E7%A7%9F%E7%9A%84%E6%9C%AA%E6%9D%A5/">深圳城中村统租的未来</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Cooper Niu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
