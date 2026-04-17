@@ -1,3 +1,10 @@
+---
+title: ACM 训练大纲
+date: 2017-11-13
+tags: []
+categories: []
+---
+
   ACM 训练大纲
                                                                                                  
                           Changsha University of Science & Technology

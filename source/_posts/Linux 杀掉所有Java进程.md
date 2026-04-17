@@ -1,3 +1,10 @@
+---
+title: Linux 杀掉所有Java进程
+date: 2023-02-14
+tags: []
+categories: []
+---
+
 # [Linux 杀掉所有Java进程](https://www.cnblogs.com/linliquan/p/11252558.html)
 
  

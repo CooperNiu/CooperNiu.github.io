@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Deploy folder
+.deploy_git/
+
+# Public folder (generated files)
+public/
+
+# Database
+db.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

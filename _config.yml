@@ -4,21 +4,21 @@
 
 # Site
 title: 锶远
-subtitle: ''
-description: ''
-keywords:
+subtitle: '技术分享与生活感悟'
+description: '记录生活、学习，分享知识、心得 - Cooper Niu 的个人博客'
+keywords: [技术, 编程, 生活, 学习, Python, Java, 开发经验]
 author: Cooper Niu
-language: zh
+language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://cooper.gitee.io
-permalink: :year/:month/:day/:title/
+url: https://cooper.gitee.io
+permalink: :year/:month/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: false # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -40,14 +40,14 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
-  tab_replace: ''
+  auto_detect: true
+  tab_replace: '  '
   wrap: true
   hljs: false
 prismjs:
@@ -99,10 +99,34 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: landscape
 
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  tags: false
+  categories: false
+
+# Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+
+# Search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://gitee.com/CooperNiu/cooper.gitee.io # 你的Github仓库地址
-  branch: master # 分支名称。默认填写 master 如果您使用的是 GitHub ，程序会尝试自动检测。
-  message: blog article update # 提交信息可以自定义，不填的则默认为提交时间
+  repo: https://github.com/CooperNiu/CooperNiu.github.io.git
+  branch: main
+  message: blog article update
